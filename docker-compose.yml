@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: 'postgres:13.3'
+    container_name: povio-assignment-db
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env
+  postgres-test:
+    image: 'postgres:13.3'
+    profiles: ['test']
+    container_name: povio-assignment-test-db
+    ports:
+      - '5435:5432'
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=audio_shop_test
